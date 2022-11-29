@@ -73,4 +73,8 @@ main:
   expect.expect_list_equals
     ["a double \"\" quote"]
     read_csv_line "\"a double \"\"\"\" quote\"".to_byte_array
-    
+
+  print "double quote at end of line"
+  expect.expect_list_equals
+    ["double quote\""]
+    read_csv_line "\"double quote\"\"\"".to_byte_array   
