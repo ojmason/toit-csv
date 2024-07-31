@@ -5,76 +5,76 @@ import expect
 
 main:
   print "simple line"
-  expect.expect_list_equals
+  expect.expect-list-equals
     ["aa","bb","cc"]
-    read_csv_line "aa,bb,cc".to_byte_array
+    read-csv-line "aa,bb,cc".to-byte-array
 
   print "line with quotes"
-  expect.expect_list_equals
+  expect.expect-list-equals
     ["aa","bb","cc"]
-    read_csv_line "aa,\"bb\",cc".to_byte_array
+    read-csv-line "aa,\"bb\",cc".to-byte-array
 
-  csv_file := """
+  csv-file := """
     id,name,age
     1,Albert,9
     2,Richard,7
     3,"Hans Joachim",12
-    """.to_byte_array
+    """.to-byte-array
 
   print "file, no header"
-  expect.expect_list_equals 
+  expect.expect-list-equals 
     [["id","name","age"], ["1","Albert","9"], ["2","Richard","7"],["3","Hans Joachim","12"]]
-    read_csv_data csv_file
+    read-csv-data csv-file
 
   print "file, with header"
-  expect.expect_list_equals
+  expect.expect-list-equals
     [{"id":"1","name":"Albert","age":"9"},
      {"id":"2","name":"Richard","age":"7"},
      {"id":"3","name":"Hans Joachim","age":"12"}]
-    read_csv_data --header=true csv_file
+    read-csv-data --header=true csv-file
 
-  csv_file = """
+  csv-file = """
     "aaa","b
     bb","ccc"
     "aaa","b""bb","ccc"
-    """.to_byte_array
+    """.to-byte-array
 
   print "multi-line, quotes"
-  expect.expect_list_equals
+  expect.expect-list-equals
     [["aaa","b\nbb","ccc"],
      ["aaa","b\"bb","ccc"]]
-    read_csv_data csv_file
+    read-csv-data csv-file
 
-  csv_file = """
-    a,b,c""".to_byte_array
+  csv-file = """
+    a,b,c""".to-byte-array
 
   print "file without final linebreak"
-  expect.expect_list_equals
+  expect.expect-list-equals
     [["a","b","c"]]
-    read_csv_data csv_file
+    read-csv-data csv-file
 
   print "line with embedded quotes"
-  expect.expect_list_equals
+  expect.expect-list-equals
     ["zz","cc\"c","dd"]
-    read_csv_line "zz,\"cc\"\"c\",dd".to_byte_array
+    read-csv-line "zz,\"cc\"\"c\",dd".to-byte-array
     
 
   print "empty fields and spaces"
-  expect.expect_list_equals
+  expect.expect-list-equals
     ["a","","c","d ","  e"] 
-    read_csv_line "a,,c,d ,  e".to_byte_array
+    read-csv-line "a,,c,d ,  e".to-byte-array
     
   print "two empty fields"
-  expect.expect_list_equals
+  expect.expect-list-equals
     ["a","","","d",""] 
-    read_csv_line "a,,,d,".to_byte_array
+    read-csv-line "a,,,d,".to-byte-array
   
   print "double double quotes"
-  expect.expect_list_equals
+  expect.expect-list-equals
     ["a double \"\" quote"]
-    read_csv_line "\"a double \"\"\"\" quote\"".to_byte_array
+    read-csv-line "\"a double \"\"\"\" quote\"".to-byte-array
 
   print "double quote at end of line"
-  expect.expect_list_equals
+  expect.expect-list-equals
     ["double quote\""]
-    read_csv_line "\"double quote\"\"\"".to_byte_array   
+    read-csv-line "\"double quote\"\"\"".to-byte-array   
