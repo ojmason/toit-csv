@@ -22,7 +22,7 @@ main:
     """.to-byte-array
 
   print "file, no header"
-  expect.expect-list-equals 
+  expect.expect-list-equals
     [["id","name","age"], ["1","Albert","9"], ["2","Richard","7"],["3","Hans Joachim","12"]]
     read-csv-data csv-file
 
@@ -57,18 +57,18 @@ main:
   expect.expect-list-equals
     ["zz","cc\"c","dd"]
     read-csv-line "zz,\"cc\"\"c\",dd".to-byte-array
-    
+
 
   print "empty fields and spaces"
   expect.expect-list-equals
-    ["a","","c","d ","  e"] 
+    ["a","","c","d ","  e"]
     read-csv-line "a,,c,d ,  e".to-byte-array
-    
+
   print "two empty fields"
   expect.expect-list-equals
-    ["a","","","d",""] 
+    ["a","","","d",""]
     read-csv-line "a,,,d,".to-byte-array
-  
+
   print "double double quotes"
   expect.expect-list-equals
     ["a double \"\" quote"]
@@ -77,4 +77,4 @@ main:
   print "double quote at end of line"
   expect.expect-list-equals
     ["double quote\""]
-    read-csv-line "\"double quote\"\"\"".to-byte-array   
+    read-csv-line "\"double quote\"\"\"".to-byte-array
