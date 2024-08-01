@@ -1,4 +1,5 @@
 name: csv
+description: Basic functions to parse CSV files from data supplied in ByteArrays.
 licence: MIT
 
 environment:
